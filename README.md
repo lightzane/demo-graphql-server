@@ -20,6 +20,8 @@ npm run dev
 http://localhost:4000/graphql
 ```
 
+Or try it with a front-end UI: https://github.com/lightzane/try-vue-graphql
+
 ## How this project was created
 
 References:
