@@ -9,6 +9,10 @@ type Mutation {
   updateBook(input: UpdateBookInput!): Book
 }
 
+type Subscription {
+  bookSub: Book!
+}
+
 type Book {
   id: ID!
   title: String!
