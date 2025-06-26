@@ -5,7 +5,7 @@ Quickly run a GraphQL `expressMiddleware` Apollo server in your local with **Exp
 ## Install dependencies
 
 ```bash
-npm install
+npm ci # or `npm install`
 ```
 
 ## Run Server
@@ -21,6 +21,16 @@ http://localhost:4000/graphql
 ```
 
 Or try it with a front-end UI: https://github.com/lightzane/try-vue-graphql
+
+## Build server
+
+```bash
+npm run build
+```
+
+```bash
+npm start
+```
 
 ## How this project was created
 

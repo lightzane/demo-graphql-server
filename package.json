@@ -2,9 +2,12 @@
   "name": "graphql-server",
   "version": "1.0.0",
   "scripts": {
+    "start": "node dist/main.js",
+    "build": "tsc",
     "dev": "nodemon src/main.ts --watch src --ext ts,graphql",
     "generate": "graphql-codegen",
-    "postinstall": "npm run generate"
+    "postinstall": "npm run generate",
+    "test": ""
   },
   "keywords": [],
   "author": "",
