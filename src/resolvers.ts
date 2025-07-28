@@ -1,5 +1,5 @@
 import { PubSub } from 'graphql-subscriptions';
-import { BookModel } from './models';
+import type { BookModel, BookShelfModel } from './models';
 import type { Resolvers } from './types';
 
 type PubSubPayload = {
@@ -15,14 +15,24 @@ const SUBSCRIPTION_EVENTS = {
 
 export const resolvers: Resolvers = {
   Query: {
+    // book.graphql
     books: (_, { title }, { dataSources }) => {
       return dataSources.bookApi.getBooks(title);
     },
     book: (_, { id }, { dataSources }) => {
       return dataSources.bookApi.getBook(id);
     },
+
+    // book-shelf.gql
+    bookShelves: (_, __, { dataSources }) => {
+      return dataSources.bookShelfApi.get();
+    },
+    bookShelf: (_, { id }, { dataSources }) => {
+      return dataSources.bookShelfApi.get(id);
+    },
   },
   Mutation: {
+    // book.graphql
     addBook: (_, { input }, { dataSources }) => {
       const newBook: BookModel = {
         id: Date.now().toString(),
@@ -53,6 +63,31 @@ export const resolvers: Resolvers = {
       }
 
       return result;
+    },
+
+    // book-shelf.gql
+    bookShelfImport: (_, { input }, { dataSources }) => {
+      const bookShelf = dataSources.bookShelfApi.get(input.bookShelfId);
+      const book = dataSources.bookApi.getBook(input.bookId);
+
+      if (bookShelf && book) {
+        bookShelf.books.push(book);
+      }
+
+      return bookShelf;
+    },
+
+    bookShelfAddLabel: (_, { input }, { dataSources }) => {
+      const shelf = dataSources.bookShelfApi.addLabel(
+        input.bookShelfId,
+        input.label
+      );
+
+      if (shelf) {
+        return shelf;
+      }
+
+      throw new Error('Failed to add label to the bookshelf');
     },
   },
   Subscription: {

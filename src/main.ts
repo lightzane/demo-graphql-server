@@ -1,16 +1,16 @@
 import { ApolloServer, type BaseContext } from '@apollo/server';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import { expressMiddleware } from '@as-integrations/express5';
-import { makeExecutableSchema } from '@graphql-tools/schema';
+import { addResolversToSchema } from '@graphql-tools/schema';
 import cors from 'cors';
 import express from 'express';
 import { useServer } from 'graphql-ws/use/ws'; // https://the-guild.dev/graphql/ws/get-started#with-ws
 import http from 'http';
 import { WebSocketServer } from 'ws';
 
-import { BookAPI } from './datasources/book-api';
+import { BookAPI, BookShelfAPI } from './datasources';
 import { resolvers } from './resolvers';
-import { typeDefs } from './schema';
+import { schema } from './schema';
 
 async function startServer() {
   const app = express();
@@ -34,7 +34,7 @@ async function startServer() {
   });
 
   // Create instance of GraphQL Schema
-  const schema = makeExecutableSchema({ typeDefs, resolvers });
+  const schemaWithResolvers = addResolversToSchema({ schema, resolvers });
 
   const GRAPHQL_ENDPOINT_URL = '/graphql';
 
@@ -48,11 +48,11 @@ async function startServer() {
 
   // Hand in the schema we just created and have the
   // WebSocketServer start listening.
-  const serverCleanup = useServer({ schema }, wsServer);
+  const serverCleanup = useServer({ schema: schemaWithResolvers }, wsServer);
 
   // Create instance of Apollo Server
   const server = new ApolloServer<BaseContext>({
-    schema,
+    schema: schemaWithResolvers,
     plugins: [
       // Proper shutdown for the HTTP server
       ApolloServerPluginDrainHttpServer({ httpServer }),
@@ -79,6 +79,7 @@ async function startServer() {
         return {
           dataSources: {
             bookApi: new BookAPI(),
+            bookShelfApi: new BookShelfAPI(),
           },
         };
       },

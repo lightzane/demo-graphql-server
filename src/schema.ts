@@ -1,6 +1,6 @@
-import { readFileSync } from 'fs';
-import gql from 'graphql-tag';
+import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader';
+import { loadSchemaSync } from '@graphql-tools/load';
 
-export const typeDefs = gql(
-  readFileSync('./src/schema.graphql', { encoding: 'utf8' })
-);
+export const schema = loadSchemaSync(['src/**/*.graphql', 'src/**/*.gql'], {
+  loaders: [new GraphQLFileLoader()], // https://the-guild.dev/graphql/tools/docs/schema-loading#graphqlfileloader
+});

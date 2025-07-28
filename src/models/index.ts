@@ -6,3 +6,15 @@ export type BookModel = {
   author?: string | null;
   year?: number | null;
 };
+
+export type BookShelfModel = {
+  id: string;
+  category: string;
+  books: BookModel[];
+  labels: BookShelfLabelModel[];
+};
+
+export type BookShelfLabelModel = {
+  id: number;
+  name: string;
+};

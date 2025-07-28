@@ -56,5 +56,64 @@
       "author": "J. D. Salinger",
       "year": 1951
     }
+  ],
+  "bookShelves": [
+    {
+      "id": "shelf1",
+      "category": "Science Fiction",
+      "books": [],
+      "labels": [
+        {
+          "id": 1,
+          "name": "test1"
+        },
+        {
+          "id": 2,
+          "name": "test2"
+        },
+        {
+          "id": 3,
+          "name": "test3"
+        }
+      ]
+    },
+    {
+      "id": "shelf2",
+      "category": "Fantasy",
+      "books": [],
+      "labels": [
+        {
+          "id": 1,
+          "name": "apple"
+        },
+        {
+          "id": 2,
+          "name": "banana"
+        },
+        {
+          "id": 3,
+          "name": "cherry"
+        }
+      ]
+    },
+    {
+      "id": "shelf3",
+      "category": "Mystery",
+      "books": [],
+      "labels": [
+        {
+          "id": 1,
+          "name": "alpha"
+        },
+        {
+          "id": 2,
+          "name": "bravo"
+        },
+        {
+          "id": 3,
+          "name": "charlie"
+        }
+      ]
+    }
   ]
 }

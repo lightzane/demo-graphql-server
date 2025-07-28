@@ -1,6 +1,7 @@
-import type { BookModel } from '../models';
+import type { BookModel, BookShelfModel } from '../models';
 import * as db from './db.json';
 
-const books = [...db.books] as BookModel[];
+const books = structuredClone(db.books) as BookModel[];
+const bookShelves = structuredClone(db.bookShelves) as BookShelfModel[];
 
-export default { books };
+export default { books, bookShelves };

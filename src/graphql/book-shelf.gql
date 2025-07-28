@@ -1,0 +1,39 @@
+#import Book from './book.graphql'
+
+type Query {
+  bookShelves: [BookShelf!]!
+  bookShelf(id: ID!): BookShelf
+}
+
+type Mutation {
+  bookShelfAddLabel(input: BookShelfAddLabelInput!): BookShelf
+  bookShelfImport(input: BookShelfImportInput!): BookShelf
+}
+
+type BookShelf {
+  id: ID!
+  category: String!
+  books: [Book!]!
+  labels: [BookShelfLabel!]!
+}
+
+"""
+Use this as an example to demo caching that duplicate data on display
+When **ID**s are unique for each type internally, but not globally.
+Use this example to implement `InMemoryCache` from `@apollo/client` (React) or `@apollo/client/core` (Vue)
+"""
+type BookShelfLabel {
+  " Auto-generated based on length "
+  id: Int!
+  name: String!
+}
+
+input BookShelfImportInput {
+  bookShelfId: ID!
+  bookId: ID!
+}
+
+input BookShelfAddLabelInput {
+  bookShelfId: ID!
+  label: String!
+}
