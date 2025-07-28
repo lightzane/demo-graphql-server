@@ -18,22 +18,23 @@
     "@graphql-codegen/typescript": "^4.1.6",
     "@graphql-codegen/typescript-resolvers": "^4.5.1",
     "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@apollo/server": "^4.12.2",
-    "@as-integrations/express5": "^1.1.0",
+    "@apollo/server": "^5.0.0",
+    "@as-integrations/express5": "^1.1.2",
     "@graphql-tools/graphql-file-loader": "^8.0.22",
     "@graphql-tools/load": "^8.1.2",
-    "@graphql-tools/schema": "^10.0.23",
+    "@graphql-tools/schema": "^10.0.25",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "graphql": "^16.11.0",
     "graphql-subscriptions": "^3.0.0",
     "graphql-tag": "^2.12.6",
-    "graphql-ws": "^6.0.5",
-    "ws": "^8.18.2"
+    "graphql-ws": "^6.0.6",
+    "ws": "^8.18.3"
   }
 }
